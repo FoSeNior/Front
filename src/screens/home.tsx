@@ -42,7 +42,7 @@ const HomeScreen = () => {
                 <Text style={styles.smallCardTitle}>복약 알림</Text>
                 <Text style={styles.smallCardSubtitle}>복약 알림 추가/삭제하기</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.smallCard}>
+                <TouchableOpacity style={styles.smallCard}>  
                 <Image source={require('../assets/pill.jpg')} style={styles.icon} />
                 <Text style={styles.smallCardTitle}>병원 방문 알림</Text>
                 <Text style={styles.smallCardSubtitle}>병원 알림 추가/삭제하기</Text>
@@ -61,48 +61,47 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-      flex: 1, 
-      backgroundColor: '#F8F8F8',
+    flex: 1,
+    backgroundColor: '#F8F8F8',
   },
   container: {
-    padding: 27,
+    flexGrow: 1, // ScrollView가 콘텐츠에 맞게 늘어나도록 설정
+    paddingHorizontal: '5%', // 좌우 여백을 %로 조정
     backgroundColor: '#F8F8F8',
-
   },
   greeting: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginBottom: 20,
-    marginLeft : 10,
+    marginBottom: '5%',
     textAlign: 'left',
   },
   card: {
     backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 20,
+    borderRadius: 15,
+    padding: '11%',
+    marginBottom: '5%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 5,
     elevation: 5,
   },
   date: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: '3%',
     textAlign: 'center',
     color: '#6E83B7',
   },
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: '2%',
   },
   divider: {
     height: 1,
-    backgroundColor: '#E5E5E5', 
-    marginVertical: 10,
+    backgroundColor: '#E5E5E5',
+    marginVertical: '3%',
   },
   icon: {
     width: 24,
@@ -117,50 +116,52 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 15,
+    padding: '8%',
+    borderRadius: 15,
+    marginBottom: '5%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 5,
     elevation: 5,
   },
   buttonText: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#6E83B7',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15,
+    marginBottom: '5%',
   },
   smallCard: {
     flex: 1,
     backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 15,
-    marginHorizontal: 5,
+    borderRadius: 15,
+    paddingVertical: '8%', 
+    paddingHorizontal: '3%',
+    marginHorizontal: '2%', 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 5,
     elevation: 5,
     alignItems: 'center',
   },
   smallCardTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#4B4B4B',
-    marginTop: 10,
+    marginTop: '3%',
   },
   smallCardSubtitle: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#9E9E9E',
     textAlign: 'center',
-    marginTop: 5,
+    marginTop: '2%',
   },
 });
+
 
 export default HomeScreen;
