@@ -35,7 +35,7 @@ const BeforeLogin = () => {
   );
 };
 
-const AppInner = () => {
+const RootStack = () => {
   const isLoggedIn = useSelector((state: RootState) => !!state.user.name);
   //TODO : 함수명 바꿀 것
   return (
@@ -45,4 +45,4 @@ const AppInner = () => {
   );
 };
 
-export default AppInner;
+export default RootStack;

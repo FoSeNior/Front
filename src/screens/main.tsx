@@ -9,21 +9,15 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/reducer'; 
-
+import { RootState } from '../store/reducer';
 
 import PillAlarmType from '../../types/alarm';
 import axios from 'axios';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
-
 export type HomeList = {
-  PillAlarm : undefined;
+  PillAlarm: undefined;
 };
-
-
-
-
 
 const HomeScreen = () => {
   const userName = useSelector((state: RootState) => state.user.name);
@@ -167,7 +161,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: '2%',
-    flex: 0.15, // 행이 화면의 15% 차지 
+    flex: 0.15, // 행이 화면의 15% 차지
   },
   smallCard: {
     flex: 1,
