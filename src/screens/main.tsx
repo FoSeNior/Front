@@ -10,13 +10,12 @@ import {
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/reducer';
-
-import PillAlarmType from '../../types/alarm';
-import axios from 'axios';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 export type HomeList = {
   PillAlarm: undefined;
+  HospitalAlarm : undefined;
 };
 
 const HomeScreen = () => {
@@ -66,7 +65,10 @@ const HomeScreen = () => {
               복약 알림 추가/삭제하기
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.smallCard}>
+          <TouchableOpacity 
+            style={styles.smallCard}
+            onPress={()=> navigation.navigate('HospitalAlarm')}
+          >
             <Image source={require('../assets/pill.jpg')} style={styles.icon} />
             <Text style={styles.smallCardTitle}>병원 방문 알림</Text>
             <Text style={styles.smallCardSubtitle}>
