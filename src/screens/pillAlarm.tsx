@@ -5,22 +5,55 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Modal,
-  Button,
   SafeAreaView,
+  Alert,
 } from 'react-native';
-import DatePicker from 'react-native-date-picker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { ScrollView } from 'react-native-gesture-handler';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
-const PillAlertScreen = () => {
+type navigationType = {
+  Main: undefined;
+};
+
+const PillAlarmScreen = () => {
   const [date, setDate] = useState(new Date());
-  const [timePickerVisible, setTimePickerVisible] = useState(false);
-  const [medicineInfo, setMedicineInfo] = useState('');
-  const [note, setNote] = useState('');
+  const [isDatePickerVisible, setDatePickerVisible] = useState(false);
+  const [isTimePickerVisible, setTimePickerVisible] = useState(false);
+  const [pillInfo, setPillInfo] = useState('');
+  const [addMemo, setAddMemo] = useState('');
+
+  const navigation = useNavigation<NavigationProp<navigationType>>();
+
+  const handleConfirmDate = (selectedDate) => {
+    setDate((prevDate) => {
+      const updatedDate = new Date(prevDate);
+      updatedDate.setFullYear(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate()
+      );
+      return updatedDate;
+    });
+    setDatePickerVisible(false);
+  };
+
+  const handleConfirmTime = (selectedTime) => {
+    setDate((prevDate) => {
+      const updatedDate = new Date(prevDate);
+      updatedDate.setHours(selectedTime.getHours(), selectedTime.getMinutes());
+      return updatedDate;
+    });
+    setTimePickerVisible(false);
+  };
 
   const handleAddAlert = () => {
-    alert(
-      `복약 알림 추가됨: ${date.toLocaleString()}, 약 정보: ${medicineInfo}`,
+    Alert.alert(
+      '복약 알림 추가됨',
+      `날짜: ${date.toLocaleDateString('ko-KR')}\n시간: ${date.toLocaleTimeString(
+        'ko-KR',
+        { hour: '2-digit', minute: '2-digit' }
+      )}\n복약 정보: ${pillInfo}`
     );
   };
 
@@ -29,97 +62,95 @@ const PillAlertScreen = () => {
       <ScrollView style={styles.container}>
         <View>
           <Text style={styles.header}>복약 알림 추가하기</Text>
+
           {/* 날짜 선택 */}
           <View style={styles.section}>
-            <Text style={styles.label}>복약 기간을 선택해주세요.</Text>
+            <Text style={styles.label}>날짜를 선택해주세요.</Text>
+            <TouchableOpacity
+              style={styles.dateButton}
+              onPress={() => setDatePickerVisible(true)}
+            >
+              <Text style={styles.dateText}>
+                {date.toLocaleDateString('ko-KR')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirmDate}
+            onCancel={() => setDatePickerVisible(false)}
+            date={date}
+          />
+
+          {/* 시간 선택 */}
+          <View style={styles.section}>
+            <Text style={styles.label}>시간을 선택해주세요.</Text>
             <TouchableOpacity
               style={styles.dateButton}
               onPress={() => setTimePickerVisible(true)}
             >
-              <Text style={styles.dateText}>{date.toLocaleString()}</Text>
+              <Text style={styles.dateText}>
+                {date.toLocaleTimeString('ko-KR', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </Text>
             </TouchableOpacity>
           </View>
+          <DateTimePickerModal
+            isVisible={isTimePickerVisible}
+            mode="time"
+            onConfirm={handleConfirmTime}
+            onCancel={() => setTimePickerVisible(false)}
+            date={date}
+          />
 
-          {/* 약 정보 입력 */}
+          {/* 복약 정보 */}
           <View style={styles.section}>
-            <Text style={styles.label}>약 정보를 입력해주세요.</Text>
+            <Text style={styles.label}>복약 정보를 입력해주세요.</Text>
             <TextInput
               style={styles.input}
               placeholder="예) 감기약 2알, 타이레놀 1알"
-              value={medicineInfo}
-              onChangeText={setMedicineInfo}
+              value={pillInfo}
+              onChangeText={setPillInfo}
             />
           </View>
 
-          {/* 메모 입력 */}
+          {/* 추가 메모 */}
           <View style={styles.section}>
             <Text style={styles.label}>추가 메모</Text>
             <TextInput
               style={styles.textArea}
               placeholder="이곳을 눌러 입력해주세요."
-              value={note}
-              onChangeText={setNote}
+              value={addMemo}
+              onChangeText={setAddMemo}
               multiline
             />
           </View>
 
           {/* 완료 버튼 */}
-          <TouchableOpacity style={styles.completeButton} onPress={handleAddAlert}>
+          <TouchableOpacity
+            style={styles.completeButton}
+            onPress={() => {
+              handleAddAlert();
+              navigation.navigate('Main');
+            }}
+          >
             <Text style={styles.completeButtonText}>복약 알림 추가 완료하기</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      {/* 시간 선택 모달 */}
-      {timePickerVisible && (
-        <Modal
-          visible={timePickerVisible}
-          transparent={true}
-          animationType="slide"
-          onRequestClose={() => setTimePickerVisible(false)} // iOS용 뒤로가기 닫기
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <DatePicker date={date} onDateChange={setDate} mode="datetime" />
-              <TouchableOpacity
-                style={styles.completeButton}
-                onPress={() => setTimePickerVisible(false)}
-              >
-                <Text style={styles.completeButtonText}>선택하기</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-      )}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F8F8F8',
-  },
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#F8F8F8',
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#4B4B4B',
-    marginBottom: 20,
-  },
-  section: {
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#6E83B7',
-    marginBottom: 10,
-  },
+  safeArea: { flex: 1, backgroundColor: '#F8F8F8' },
+  container: { flex: 1, padding: 20, backgroundColor: '#F8F8F8' },
+  header: { fontSize: 24, fontWeight: 'bold', color: '#4B4B4B', marginBottom: 20 },
+  section: { marginBottom: 20 },
+  label: { fontSize: 16, fontWeight: 'bold', color: '#6E83B7', marginBottom: 10 },
   dateButton: {
     padding: 15,
     borderWidth: 1,
@@ -127,10 +158,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#FFF',
   },
-  dateText: {
-    fontSize: 16,
-    color: '#4B4B4B',
-  },
+  dateText: { fontSize: 16, color: '#4B4B4B' },
   input: {
     borderWidth: 1,
     borderColor: '#D3D3D3',
@@ -155,23 +183,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-  completeButtonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#FFF',
-    padding: 20,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
+  completeButtonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' },
 });
 
-export default PillAlertScreen;
+export default PillAlarmScreen;

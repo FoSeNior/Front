@@ -22,9 +22,11 @@ target 'FoSeni' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/..",
     # Fabric 비활성화 설정
-    :fabric_enabled => false
+    :fabric_enabled => false,
+    :new_arch_enabled => false,
+    :hermes_enabled => false
   )
-
+  
   target 'FoSeniTests' do
     inherit! :complete
     # Pods for testing
