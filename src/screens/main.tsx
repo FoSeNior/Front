@@ -16,6 +16,8 @@ import axios from 'axios';
 export type HomeList = {
   PillAlarm: undefined;
   HospitalAlarm : undefined;
+  PillSearch : undefined;
+  PillAlarmList : undefined;
 };
 
 const HomeScreen = () => {
@@ -57,7 +59,7 @@ const HomeScreen = () => {
         <View style={styles.row}>
           <TouchableOpacity
             style={styles.smallCard}
-            onPress={() => navigation.navigate('PillAlarm')}
+            onPress={() => navigation.navigate('PillAlarmList')}
           >
             <Image source={require('../assets/pill.jpg')} style={styles.icon} />
             <Text style={styles.smallCardTitle}>복약 알림</Text>
@@ -78,7 +80,10 @@ const HomeScreen = () => {
         </View>
 
         {/* 약 정보 검색하기 */}
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => navigation.navigate('PillSearch')}
+        >
           <Image source={require('../assets/pill.jpg')} style={styles.icon} />
           <Text style={styles.buttonText}>약 정보 검색하기</Text>
         </TouchableOpacity>

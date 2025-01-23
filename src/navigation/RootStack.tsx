@@ -7,6 +7,8 @@ import { Text } from 'react-native';
 import { RootState } from '../store/reducer';
 import PillAlarmScreen from '../screens/pillAlarm';
 import HospitalAlarmScreen from '../screens/hospitalAlarm';
+import PillAlarmListScreen from '../screens/pillAlarmList'
+
 
 export type RootStackParamList = {
   Main: undefined;
@@ -14,7 +16,8 @@ export type RootStackParamList = {
   PillAlarm: undefined;
   LogIn: undefined;
   SignUp: undefined;
-  SearchPill: undefined;
+  PillAlarmList : undefined
+  PillSearch: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -34,12 +37,17 @@ const BeforeLogin = () => {
         <Stack.Screen
           name="PillAlarm"
           component={PillAlarmScreen}
-          options={{ title: 'PillAlertScreen' }}
+          options={{ title: 'PillAlarmScreen' }}
         />
         <Stack.Screen
           name="HospitalAlarm"
           component={HospitalAlarmScreen}
           options={{ title: 'HospitalAlarm' }}
+        />
+        <Stack.Screen
+          name="PillAlarmList"
+          component={PillAlarmListScreen}
+          options={{ title: 'PillAlarmListScreen' }}
         />
     </Stack.Navigator>
   );
