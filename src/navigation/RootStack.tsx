@@ -10,6 +10,7 @@ import HospitalAlarmListScreen from '../screens/hospitalAlarmList';
 import PillAlarmScreen from '../screens/pillAlarm';
 import PillAlarmListScreen from '../screens/pillAlarmList'
 import SearchPillScreen from '../screens/searchPill';
+import PillDetailScreen from '../screens/pillDetail';
 
 
 export type RootStackParamList = {
@@ -21,6 +22,7 @@ export type RootStackParamList = {
   PillAlarmList : undefined
   HospitalAlarmList : undefined;
   SearchPill: undefined;
+  PillDetail: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -62,6 +64,12 @@ const BeforeLogin = () => {
           component={SearchPillScreen}
           options={{ title: 'SearchPillScreen' }}
         />
+        <Stack.Screen
+          name="PillDetail"
+          component={PillDetailScreen}
+          options={{ title: 'PillDetailScreen' }}
+        />
+
     </Stack.Navigator>
   );
 };
