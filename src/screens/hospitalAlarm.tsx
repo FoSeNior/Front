@@ -11,6 +11,12 @@ import {
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { ScrollView } from 'react-native-gesture-handler';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+
+type navigationType = {
+  Main: undefined;
+  HospitalAlarmList : undefined;
+};
 
 const HospitalAlertScreen = () => {
   const [date, setDate] = useState(new Date());
@@ -20,6 +26,7 @@ const HospitalAlertScreen = () => {
   const [hospitalAlarmDetail, setHospitalAlarmDetail] = useState('');
   const [addMemo, setAddMemo] = useState('');
 
+  const navigation = useNavigation<NavigationProp<navigationType>>();
   // 현재 시스템 테마 확인
   const isDarkModeEnabled = Appearance.getColorScheme() === 'dark';
 
@@ -141,7 +148,13 @@ const HospitalAlertScreen = () => {
           </View>
 
           {/* 완료 버튼 */}
-          <TouchableOpacity style={styles.completeButton} onPress={handleAddAlert}>
+          <TouchableOpacity 
+            style={styles.completeButton} 
+            onPress={()=>{
+              handleAddAlert();
+              navigation.goBack();
+            }}
+          >
             <Text style={styles.completeButtonText}>병원 알림 추가 완료하기</Text>
           </TouchableOpacity>
         </View>
