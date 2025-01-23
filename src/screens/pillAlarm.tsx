@@ -14,6 +14,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 type navigationType = {
   Main: undefined;
+  PillAlarmList : undefined;
 };
 
 const PillAlarmScreen = () => {
@@ -61,7 +62,7 @@ const PillAlarmScreen = () => {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.container}>
         <View>
-          <Text style={styles.header}>복약 알림 추가하기</Text>
+          <Text style={styles.header}>복약 알림 추가</Text>
 
           {/* 날짜 선택 */}
           <View style={styles.section}>
@@ -134,10 +135,10 @@ const PillAlarmScreen = () => {
             style={styles.completeButton}
             onPress={() => {
               handleAddAlert();
-              navigation.navigate('Main');
+              navigation.goBack();
             }}
           >
-            <Text style={styles.completeButtonText}>복약 알림 추가 완료하기</Text>
+            <Text style={styles.completeButtonText}>알림 추가 완료</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -148,7 +149,7 @@ const PillAlarmScreen = () => {
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#F8F8F8' },
   container: { flex: 1, padding: 20, backgroundColor: '#F8F8F8' },
-  header: { fontSize: 24, fontWeight: 'bold', color: '#4B4B4B', marginBottom: 20 },
+  header: { fontSize: 24, fontWeight: 'bold', color: '#4B4B4B', marginBottom: 20, textAlign:'center' },
   section: { marginBottom: 20 },
   label: { fontSize: 16, fontWeight: 'bold', color: '#6E83B7', marginBottom: 10 },
   dateButton: {
