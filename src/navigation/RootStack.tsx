@@ -5,9 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Text } from 'react-native';
 import { RootState } from '../store/reducer';
-import PillAlarmScreen from '../screens/pillAlarm';
 import HospitalAlarmScreen from '../screens/hospitalAlarm';
+import HospitalAlarmListScreen from '../screens/hospitalAlarmList';
+import PillAlarmScreen from '../screens/pillAlarm';
 import PillAlarmListScreen from '../screens/pillAlarmList'
+import SearchPillScreen from '../screens/searchPill';
 
 
 export type RootStackParamList = {
@@ -17,7 +19,8 @@ export type RootStackParamList = {
   LogIn: undefined;
   SignUp: undefined;
   PillAlarmList : undefined
-  PillSearch: undefined;
+  HospitalAlarmList : undefined;
+  SearchPill: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -40,14 +43,24 @@ const BeforeLogin = () => {
           options={{ title: 'PillAlarmScreen' }}
         />
         <Stack.Screen
+          name="PillAlarmList"
+          component={PillAlarmListScreen}
+          options={{ title: 'PillAlarmListScreen' }}
+        />
+        <Stack.Screen
           name="HospitalAlarm"
           component={HospitalAlarmScreen}
           options={{ title: 'HospitalAlarm' }}
         />
         <Stack.Screen
-          name="PillAlarmList"
-          component={PillAlarmListScreen}
-          options={{ title: 'PillAlarmListScreen' }}
+          name="HospitalAlarmList"
+          component={HospitalAlarmListScreen}
+          options={{ title: 'HospitalAlarmListScreen' }}
+        />
+        <Stack.Screen
+          name="SearchPill"
+          component={SearchPillScreen}
+          options={{ title: 'SearchPillScreen' }}
         />
     </Stack.Navigator>
   );
