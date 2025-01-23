@@ -12,33 +12,30 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export type NavigateList = {
-  PillAlarm: undefined;
+  HospitalAlarm: undefined;
 };
 
-const PillAlarmListScreen = () => {
+const HospitalAlarmListScreen = () => {
   const navigation = useNavigation<NavigationProp<NavigateList>>();
 
-  // FlatList의 ref를 생성
   const flatListRef = useRef<FlatList>(null);
-
+  
+  // TODO: useMemo 사용
   const alarms = [
-    { id: '1', date: '2024/01/15', time: '09:30', info: '감기약 2알' },
-    { id: '2', date: '2024/01/15', time: '09:30', info: '감기약 2알' },
-    { id: '3', date: '2024/01/15', time: '09:30', info: '감기약 2알' },
-    { id: '4', date: '2024/01/15', time: '09:30', info: '감기약 2알' },
-    { id: '5', date: '2024/01/15', time: '09:30', info: '감기약 2알' },
+    { id: '1', date: '2024/01/15', time: '09:30', hospitalName: '복음병원',hospitalAlarmDetail : '정형외과 김ㅇㅇ 전문의'},
+    { id: '2', date: '2024/01/15', time: '09:30', hospitalName: '복음병원',hospitalAlarmDetail : '정형외과 김ㅇㅇ 전문의'},
+    { id: '3', date: '2024/01/15', time: '09:30', hospitalName: '복음병원',hospitalAlarmDetail : '정형외과 김ㅇㅇ 전문의'},
+    { id: '4', date: '2024/01/15', time: '09:30', hospitalName: '복음병원',hospitalAlarmDetail : '정형외과 김ㅇㅇ 전문의'},
+    { id: '5', date: '2024/01/15', time: '09:30', hospitalName: '복음병원',hospitalAlarmDetail : '정형외과 김ㅇㅇ 전문의'},
   ];
 
-  const renderAlertItem = ({
-    item,
-  }: {
-    item: { id: string; date: string; time: string; info: string };
-  }) => (
+  const renderAlertItem = ({item}: {item : { id: number; date: string; time: string; hospitalName: string, hospitalAlarmDetail : string}}) => (
     <View style={styles.alertItem}>
       <Text style={styles.alertText}>
         {item.date} {item.time}
       </Text>
-      <Text style={styles.alertInfo}>{item.info}</Text>
+      <Text style={styles.alertInfo}>{item.hospitalName}</Text>
+      <Text style={styles.alertInfo}>{item.hospitalAlarmDetail}</Text>
       <TouchableOpacity style={styles.editButton}>
         <Text style={styles.editButtonText}>수정하기 버튼</Text>
       </TouchableOpacity>
@@ -61,7 +58,7 @@ const PillAlarmListScreen = () => {
       <View style={styles.test}>
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => navigation.navigate('PillAlarm')}
+          onPress={() => navigation.navigate('HospitalAlarm')}
         >
           <Text style={styles.addButtonText}>+</Text>
           <Text style={styles.addButtonSubtitle}>알림 추가하기 버튼</Text>
@@ -156,4 +153,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PillAlarmListScreen;
+export default HospitalAlarmListScreen;

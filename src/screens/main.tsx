@@ -16,13 +16,15 @@ import axios from 'axios';
 export type HomeList = {
   PillAlarm: undefined;
   HospitalAlarm : undefined;
-  PillSearch : undefined;
+  SearchPill : undefined;
   PillAlarmList : undefined;
+  HospitalAlarmList : undefined;
 };
 
 const HomeScreen = () => {
   const userName = useSelector((state: RootState) => state.user.name);
   const accessToken = useSelector((state: RootState) => state.user.accessToken);
+
   const navigation = useNavigation<NavigationProp<HomeList>>();
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -69,7 +71,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.smallCard}
-            onPress={()=> navigation.navigate('HospitalAlarm')}
+            onPress={()=> navigation.navigate('HospitalAlarmList')}
           >
             <Image source={require('../assets/pill.jpg')} style={styles.icon} />
             <Text style={styles.smallCardTitle}>병원 방문 알림</Text>
@@ -82,7 +84,7 @@ const HomeScreen = () => {
         {/* 약 정보 검색하기 */}
         <TouchableOpacity 
           style={styles.button}
-          onPress={() => navigation.navigate('PillSearch')}
+          onPress={()=>{navigation.navigate('SearchPill')}}
         >
           <Image source={require('../assets/pill.jpg')} style={styles.icon} />
           <Text style={styles.buttonText}>약 정보 검색하기</Text>
