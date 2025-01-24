@@ -11,6 +11,7 @@ import PillAlarmScreen from '../screens/pillAlarm';
 import PillAlarmListScreen from '../screens/pillAlarmList'
 import SearchPillScreen from '../screens/searchPill';
 import PillDetailScreen from '../screens/pillDetail';
+import { FavoritesProvider } from '../context/favorites';
 
 
 export type RootStackParamList = {
@@ -33,44 +34,45 @@ const AfterLogin = () => {
 
 const BeforeLogin = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen 
-          name="Main" 
-          component={Main} 
-          options={{ title: 'Main' }} 
-        />
-        <Stack.Screen
-          name="PillAlarm"
-          component={PillAlarmScreen}
-          options={{ title: 'PillAlarmScreen' }}
-        />
-        <Stack.Screen
-          name="PillAlarmList"
-          component={PillAlarmListScreen}
-          options={{ title: 'PillAlarmListScreen' }}
-        />
-        <Stack.Screen
-          name="HospitalAlarm"
-          component={HospitalAlarmScreen}
-          options={{ title: 'HospitalAlarm' }}
-        />
-        <Stack.Screen
-          name="HospitalAlarmList"
-          component={HospitalAlarmListScreen}
-          options={{ title: 'HospitalAlarmListScreen' }}
-        />
-        <Stack.Screen
-          name="SearchPill"
-          component={SearchPillScreen}
-          options={{ title: 'SearchPillScreen' }}
-        />
-        <Stack.Screen
-          name="PillDetail"
-          component={PillDetailScreen}
-          options={{ title: 'PillDetailScreen' }}
-        />
-
-    </Stack.Navigator>
+    <FavoritesProvider>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen 
+            name="Main" 
+            component={Main} 
+            options={{ title: 'Main' }} 
+          />
+          <Stack.Screen
+            name="PillAlarm"
+            component={PillAlarmScreen}
+            options={{ title: 'PillAlarmScreen' }}
+          />
+          <Stack.Screen
+            name="PillAlarmList"
+            component={PillAlarmListScreen}
+            options={{ title: 'PillAlarmListScreen' }}
+          />
+          <Stack.Screen
+            name="HospitalAlarm"
+            component={HospitalAlarmScreen}
+            options={{ title: 'HospitalAlarm' }}
+          />
+          <Stack.Screen
+            name="HospitalAlarmList"
+            component={HospitalAlarmListScreen}
+            options={{ title: 'HospitalAlarmListScreen' }}
+          />
+          <Stack.Screen
+            name="SearchPill"
+            component={SearchPillScreen}
+            options={{ title: 'SearchPillScreen' }}
+          />
+          <Stack.Screen
+            name="PillDetail"
+            component={PillDetailScreen}
+            options={{ title: 'PillDetailScreen' }}
+          />
+      </Stack.Navigator>
+    </FavoritesProvider>
   );
 };
 
