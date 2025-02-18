@@ -1469,7 +1469,7 @@ PODS:
     - React-utils (= 0.76.6)
   - RNDateTimePicker (6.7.5):
     - React-Core
-  - RNGestureHandler (2.23.1):
+  - RNGestureHandler (2.22.0):
     - DoubleConversion
     - glog
     - RCT-Folly (= 2024.01.01.00)
@@ -1901,7 +1901,7 @@ SPEC CHECKSUMS:
   ReactCodegen: b95bdd8716016cb9a831cfd3f23d9b9de4dc5d8e
   ReactCommon: 316f528c058ca9bc3a0c430ce46a85bbd69aa2a0
   RNDateTimePicker: 47b54bf36a41c29d75ac62a05af1b38a9a721631
-  RNGestureHandler: 082517eab7a0e5f7e1ee68216074f615e9a82ea9
+  RNGestureHandler: 8c8722468ee6ced80a0723943c894798d2613a81
   RNReanimated: f7a4125507a1ce4b3662df11614ec8e5072be4c1
   RNScreens: 5ba05ac505cfb548aebdc1f546ee5c66826fd6cb
   RNVectorIcons: 5427624e18b23d9fddb720141e760a0bad953d49
