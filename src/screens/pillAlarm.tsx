@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Alert,
+  ScrollView
 } from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { ScrollView } from 'react-native-gesture-handler';
+
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 type navigationType = {
@@ -76,13 +76,6 @@ const PillAlarmScreen = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirmDate}
-            onCancel={() => setDatePickerVisible(false)}
-            date={date}
-          />
 
           {/* 시간 선택 */}
           <View style={styles.section}>
@@ -99,13 +92,6 @@ const PillAlarmScreen = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <DateTimePickerModal
-            isVisible={isTimePickerVisible}
-            mode="time"
-            onConfirm={handleConfirmTime}
-            onCancel={() => setTimePickerVisible(false)}
-            date={date}
-          />
 
           {/* 복약 정보 */}
           <View style={styles.section}>
