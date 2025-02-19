@@ -7,10 +7,10 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Alert,
+  ScrollView,
   Appearance, // 테마 확인을 위한 모듈
 } from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { ScrollView } from 'react-native-gesture-handler';
+
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 type navigationType = {
@@ -80,14 +80,6 @@ const HospitalAlertScreen = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirmDate}
-            onCancel={() => setDatePickerVisible(false)}
-            date={date}
-            isDarkModeEnabled={isDarkModeEnabled} // 테마 설정 추가
-          />
 
           {/* 시간 선택 */}
           <View style={styles.section}>
@@ -104,14 +96,7 @@ const HospitalAlertScreen = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <DateTimePickerModal
-            isVisible={isTimePickerVisible}
-            mode="time"
-            onConfirm={handleConfirmTime}
-            onCancel={() => setTimePickerVisible(false)}
-            date={date}
-            isDarkModeEnabled={isDarkModeEnabled} // 테마 설정 추가
-          />
+        
 
           {/* 병원 이름 입력 */}
           <View style={styles.section}>
