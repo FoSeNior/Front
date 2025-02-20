@@ -1,19 +1,42 @@
 import React from 'react';
-import JoinScreen from "../screens/JoinScreen.tsx";
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Home from '../screens/Home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+
 
 export type RootStackParamList = {
-    Join: undefined;
+  Home: undefined;
+  HospitalAlarm: undefined;
+  PillAlarm: undefined;
+  LogIn: undefined;
+  SignUp: undefined;
+  SearchPill: undefined;
 };
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const RootStack = () => {
-    return (
-        <Stack.Navigator initialRouteName="Join">
-            <Stack.Screen name="Join" component={JoinScreen} options={{ headerShown: false }} />
-        </Stack.Navigator>
-    );
+const AfterLogin = () => {
+  return <Text>로그인 후 페이지</Text>;
 };
 
-export default RootStack;
+const BeforeLogin = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={Home} options={{ title: 'Home' }} />
+    </Stack.Navigator>
+  );
+};
+
+const AppInner = () => {
+  const isLoggedIn = 0;
+  //TODO : 함수명 바꿀 것
+  return (
+    <NavigationContainer>
+      {isLoggedIn ? <AfterLogin /> : <BeforeLogin />}
+    </NavigationContainer>
+  );
+};
+
+export default AppInner;
+
